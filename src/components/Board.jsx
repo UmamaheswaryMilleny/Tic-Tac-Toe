@@ -5,8 +5,16 @@ import toast from "react-hot-toast";
 
 const Board = () => {
   const navigate = useNavigate()
-  const [xIsNext, setXIsNext] = useState(true);
-  const [squares, setSquares] = useState(Array(9).fill(null));
+//Whose turn was it last time?If it exists → use it f not → X starts (true)
+  const [xIsNext, setXIsNext] = useState(()=>{
+    const savedTurn = localStorage.getItem("xIsNext")
+    return savedTurn?JSON.parse(savedTurn):true
+  });
+  // Why () => {} inside useState is becasue Run this code ONLY ONCE, when the app starts.
+  const [squares, setSquares] = useState(()=>{
+    const savedSquares=localStorage.getItem("squares")
+    return savedSquares? JSON.parse(savedSquares):Array(9).fill(null)
+  });
 
   function handleClick(i) {
     if (squares[i] || calculateWinner(squares)) {
