@@ -17,7 +17,7 @@ const Board = () => {
   });
 
   function handleClick(i) {
-    if (squares[i] || calculateWinner(squares)) {
+    if (squares[i] || calculateWinner(squares) || isDraw) {
       return;
     }
     let nextSquares = squares.slice();
@@ -30,7 +30,8 @@ const Board = () => {
     setXIsNext(!xIsNext);
   }
   const winner = calculateWinner(squares);
-  let status = `Player ${xIsNext ? "X" : "O"}’s Turn`
+  let status;
+
   
 useEffect(() => {
   localStorage.setItem("squares", JSON.stringify(squares));
@@ -59,6 +60,29 @@ const resetGame=()=>{
   localStorage.removeItem("xIsNext")
 }
 
+const isDraw = !winner && squares.every(squares=>squares!=null)
+useEffect(()=>{
+  if (isDraw) {
+    toast("🤝 It's a Draw! No moves left.", {
+      icon: "⚖️",
+      style: {
+        background: "#FEF3C7",
+        color: "#92400E",
+        border: "2px solid #92400E",
+      },
+    });
+  }
+},[isDraw])
+useEffect(()=>{
+  if(winner || isDraw){
+    localStorage.removeItem("squares")
+    localStorage.removeItem("xIsNext")
+  }
+},[winner,isDraw])
+  if(!winner && !isDraw){
+
+    status = `Player ${xIsNext ? "X" : "O"}’s Turn`
+  }
   return (
     <div className="flex flex-col items-center gap-6">
       <div className="text-[#FFF7ED] text-lg font-extrabold">{status}</div>
