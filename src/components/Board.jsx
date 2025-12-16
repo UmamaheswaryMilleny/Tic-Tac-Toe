@@ -1,8 +1,10 @@
 import { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Square from "./Square";
 import toast from "react-hot-toast";
 
 const Board = () => {
+  const navigate = useNavigate()
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
@@ -22,6 +24,10 @@ const Board = () => {
   const winner = calculateWinner(squares);
   let status = `Player ${xIsNext ? "X" : "O"}’s Turn`
   
+useEffect(() => {
+  localStorage.setItem("squares", JSON.stringify(squares));
+  localStorage.setItem("xIsNext", JSON.stringify(xIsNext));
+}, [squares, xIsNext]);
 
 
 useEffect(() => {
@@ -38,9 +44,16 @@ useEffect(() => {
   }
 }, [winner]);
 
+const resetGame=()=>{
+  setSquares(Array(9).fill(null))
+  setXIsNext(true)
+  localStorage.removeItem("squares")
+  localStorage.removeItem("xIsNext")
+}
+
   return (
     <div className="flex flex-col items-center gap-6">
-      <div className="text-[#FFF7ED] text-lg font-semibold">{status}</div>
+      <div className="text-[#FFF7ED] text-lg font-extrabold">{status}</div>
    <div className="bg-[#E6C3A1] p-4 rounded-2xl shadow-lg">
       <div className="grid grid-cols-3 gap-3">
         <Square value={squares[0]} onSquareclick={() => handleClick(0)} />
@@ -54,15 +67,17 @@ useEffect(() => {
         <Square value={squares[8]} onSquareclick={() => handleClick(8)} />
       </div>
     </div>
-      <button
-      onClick={() => {
-        setSquares(Array(9).fill(null));
-        setXIsNext(true);
-      }}
+<div className="flex gap-2">
+   <button
+      onClick={resetGame}
       className="bg-[#F97316] text-white px-6 py-2 rounded-full font-semibold shadow-md hover:scale-105 transition"
     >
       New Game
     </button>
+    <button onClick={()=>navigate('/')} className="bg-[#F97316] text-white px-6 py-2 rounded-full font-semibold shadow-md hover:scale-105 transition">
+      Back to Home
+    </button>
+</div>
     </div>
   );
 };

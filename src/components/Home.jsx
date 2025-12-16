@@ -1,4 +1,7 @@
-const Home = ({ onStart }) => {
+import { useNavigate } from "react-router-dom";
+
+const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-[#E6C3A1] p-10 rounded-3xl shadow-xl text-center max-w-sm">
       <h1 className="text-3xl font-bold text-[#7C2D12] mb-4">
@@ -10,7 +13,7 @@ const Home = ({ onStart }) => {
       </p>
 
       <button
-        onClick={onStart}
+        onClick={() => navigate("/game")}
         className="
           bg-[#F97316]
           text-white
