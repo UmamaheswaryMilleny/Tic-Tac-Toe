@@ -1,16 +1,72 @@
-# React + Vite
+# Tic-Tac-Toe 🎮
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive Tic-Tac-Toe game built with **React**, **Vite**, and **Tailwind CSS**. This application features a clean UI, game state persistence, and real-time notifications for game outcomes.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Classic Gameplay**: Enjoy the traditional 3x3 grid Tic-Tac-Toe experience.
+- **State Persistence**: Game progress is saved automatically using local storage. You won't lose your game even if you refresh the page!
+- **Interactive UI**: polished design with hover effects and animations using Tailwind CSS.
+- **Real-time Notifications**: Winners and Draws are announced using `react-hot-toast`.
+- **Game Management**: Options to reset the game or return to the home screen at any time.
+- **Routing**: Seamless navigation between the Home screen and Game board using `react-router-dom`.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **[React](https://react.dev/)**: JavaScript library for building user interfaces.
+- **[Vite](https://vitejs.dev/)**: Next Generation Frontend Tooling.
+- **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for rapid UI development.
+- **[React Router](https://reactrouter.com/)**: Declarative routing for React.
+- **[React Hot Toast](https://react-hot-toast.com/)**: Smoking hot React notifications.
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── components/
+│   ├── Board.jsx    # Main game logic and board layout
+│   ├── Home.jsx     # Landing page with "Start Game" button
+│   └── Square.jsx   # Individual grid square component
+├── App.jsx          # Main application component with routing
+├── main.jsx         # Entry point
+└── index.css        # Global styles and Tailwind imports
+```
+
+## 💿 Installation & Running Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository_url>
+   cd tic-tac-toe
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in Browser**
+   Open [http://localhost:5173](http://localhost:5173) (or the URL shown in your terminal) to view the app.
+
+## 🏗️ Build for Production
+
+To create a production-ready build:
+
+```bash
+npm run build
+```
+
+This will generate a `dist` folder containing the optimized files for deployment.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request if you have any ideas for improvements.
+
+## 📄 License
+
+This project is open-source and available for use.
